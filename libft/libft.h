@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libft.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: aplat <marvin@le-101.fr>                   +:+   +:    +:    +:+     */
+/*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 16:33:55 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/06 14:50:52 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/20 17:25:26 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -128,5 +128,6 @@ void				ft_swap(int *a, int *b);
 void				rev_print(int ac, char **str);
 
 void				inter(int ac, char **str);
+float	    		ft_powf(float nb, float power);
 
 #endif

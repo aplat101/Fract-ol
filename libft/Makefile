@@ -6,7 +6,7 @@
 #    By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/03 16:28:38 by aplat        #+#   ##    ##    #+#        #
-#    Updated: 2019/05/30 11:58:10 by aplat       ###    #+. /#+    ###.fr      #
+#    Updated: 2019/06/20 17:24:31 by aplat       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -45,10 +45,10 @@ COMP = ft_memset.c ft_memcpy.c ft_memccpy.c \
 	   only_a.c only_z.c aff_z.c\
 	   \
 	   repeat_alpha.c search_and_replace.c ulstr.c rot_13.c rotone.c\
-	   first_word.c ft_swap.c rev_print.c\
+	   first_word.c ft_swap.c rev_print.c ft_powf.c\
 
 
-HEAD = -I libft.h get_next_line.h
+HEAD = -I libft.h
 
 CC = gcc
 
