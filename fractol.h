@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/24 15:31:37 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/22 14:57:45 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,8 @@
 
 typedef struct	s_point
 {
-	float		x;
-	float		y;
+	double		x;
+	double		y;
 }				t_point;
 
 typedef struct	s_win
@@ -38,44 +38,66 @@ typedef struct	s_win
 	void		*info_ptr;
 	int			*info;
 	char		*name;
+	pthread_t	t[5];
 	int			zoom;
-	float		projx;
-	float		projy;
-	float		x1;
-	float		y1;
-	float		x2;
-	float		y2;
+	double		projx;
+	double		projy;
+	double		x1;
+	double		y1;
+	double		x2;
+	double		y2;
 	int			iter;
-	float		zr;
-	float		zi;
-	float		cr;
-	float		ci;
-	float		imagex;
-	float		imagey;
-	float		lx;
-	float		ly;
+	double		zr;
+	double		zi;
+	double		cr;
+	double		ci;
+	double		imagex;
+	double		imagey;
+	double		lx;
+	double		ly;
+	int			it;
 }				t_win;
 
 typedef struct	s_env
 {
 	void		*ptr;
-	char		*fract[3];
-	int			nbfract;
 	int			ds;
 	t_win		*fp;
 	t_win		*sp;
 }				t_env;
+
+int     ft_check_exist(int ac, char **av);
+void	ft_usage();
+void	ft_check_arg(char **av, int ac, t_env *env);
+void	ft_alloc_win(int ac, t_env *env);
+
+
+void	ft_start_julia(t_win *w);
+
+void	ft_start_fract(t_win *w);
+
+void	ft_reset_img(t_win *w);
+
+void	ft_create_window(t_win *w);
+
+void	*julia(void *arg);
+
+void	ft_start_mandelbrot(t_win *w);
+void	*mandelbrot(void *arg);
+
+void	ft_start_ship(t_win *w);
+void	*ship(void *arg);
 
 void	ft_init_fract(t_env *env);
 void	ft_mlx_keys(t_env *env);
 int		close_cross(t_env *env);
 void	ft_new_img(t_win *w);
 
-int		ft_check_exist(int ac, char **av, t_env *env);
-void	ft_usage(t_env *env);
+//int		ft_check_exist(int ac, char **av, t_env *env);
+//void	ft_usage();
 void	ft_error(int ac, char **av, t_env *env);
 
-void    ft_create_window(t_env *env);
+//void    ft_create_window(t_env *env);
 void	ft_create_info(t_win *win, t_env *env);
 void	ft_frame(t_win *win);
 
@@ -90,7 +112,7 @@ int		mouse_press_w2(int button, int x, int y, t_env *env);
 void	ft_reset_values(t_win *w);
 void	ft_init_switch(t_env *env);
 void	ft_init_fract_values(t_win *w);
-void	ft_start_fract(t_win *w);
+//void	ft_start_fract(t_win *w);
 
 void	ft_refresh_mandel_values(t_win *w);
 void	ft_mandelbrot(t_win *w);
@@ -105,6 +127,8 @@ void	ft_move_up(t_win *w);
 
 void	ft_center(t_win *w);
 int		ft_in_img(t_win *w);
+void	ft_iterp(t_win *w);
+void	ft_iterm(t_win *w);
 
 void	ft_ship(t_win *w);
 

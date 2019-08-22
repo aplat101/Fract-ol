@@ -5,32 +5,45 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/22 17:22:01 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/24 15:01:44 by aplat       ###    #+. /#+    ###.fr     */
+/*   Created: 2019/08/20 06:13:03 by aplat        #+#   ##    ##    #+#       */
+/*   Updated: 2019/08/20 08:04:38 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_center(t_win *w)
+void	ft_create_window(t_win *w)
 {
-	ft_reset_values(w);
-	ft_start_fract(w);
+	int	bpp;
+	int	s_l;
+	int	endian;
+
+	w->win = mlx_new_window(w->ptr, WD, HH, "Fract'ol");
+	w->img_ptr = mlx_new_image(w->ptr, WD, HH);
+	w->img = (int*)mlx_get_data_addr(w->img_ptr, &(bpp), &(s_l), &(endian));
 }
 
-int			ft_in_img(t_win *w)
+void	ft_mlx_keys(t_env *env)
 {
-	int		res;
-	float	y;
-	float	x;
+	mlx_hook(env->fp->win, 2, 0, key_press_w1, env);
+	mlx_hook(env->fp->win, 3, 0, key_release_w1, env);
+	mlx_hook(env->fp->win, 4, 0, mouse_press_w1, env);
+	mlx_hook(env->fp->win, 17, (1L << 17), close_cross, env);
+	if (env->ds == 1)
+	{
+		mlx_hook(env->sp->win, 2, 0, key_press_w2, env);
+		mlx_hook(env->sp->win, 3, 0, key_release_w2, env);
+		mlx_hook(env->sp->win, 4, 0, mouse_press_w2, env);
+		mlx_hook(env->sp->win, 17, (1L << 17), close_cross, env);
+	}
+	mlx_loop(env->ptr);
+}
 
-	y = w->ly + w->projy;
-	x = w->lx + w->projx;
-	res = 0;
-	if ((y < HH && y > 0) && (x < POST && x > 0))
-		res = 1;
-	else
-		res = 0;
-	return (res);
+int		close_cross(t_env *env)
+{
+	if (env->ds == 0)
+		exit(0);
+	env->ds = 0;
+	return (0);
 }

@@ -6,22 +6,22 @@
 #    By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/19 16:37:18 by aplat        #+#   ##    ##    #+#        #
-#    Updated: 2019/06/24 15:31:46 by aplat       ###    #+. /#+    ###.fr      #
+#    Updated: 2019/08/22 14:26:13 by aplat       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = main.c ft_init.c ft_error.c ft_window.c ft_bind_keys_w1.c\
-		ft_bind_keys_w2.c ft_init_fract.c ft_mandelbrot.c ft_translate.c\
-		ft_utils.c ft_julia.c ft_ship.c ft_zoom.c
+SRC = main.c ft_error.c ft_init_fract.c ft_utils.c ft_julia_init.c \
+		ft_bind_keys_fp.c ft_bind_keys_sp.c ft_translate.c ft_mandelbrot.c\
+		ft_ship.c
 
 CC = cc
 
 DEPENDENCES = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -lpthread -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 HEADERS = fdf.h
 

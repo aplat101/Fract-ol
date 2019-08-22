@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/20 15:21:50 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/24 15:00:59 by aplat       ###    #+. /#+    ###.fr     */
+/*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
+/*   Updated: 2019/08/22 14:57:20 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,19 +21,40 @@ void		ft_refresh_mandel_values(t_win *w)
 	w->zi = 0;
 }
 
-void		ft_mandelbrot(t_win *w)
+void		ft_start_mandelbrot(t_win *w)
 {
-	float	tmp;
 	int		i;
 
-	w->lx = -1;
-	while (++(w->lx) < w->imagex - 1)
+	ft_reset_img(w);
+	i = 0;
+	while (i < 5)
+	{
+		w->it = i;
+		if(pthread_create(&w->t[i], NULL, mandelbrot, w) == -1) 
+		{
+			perror("pthread_create");
+			return ;
+    	}
+		pthread_join(w->t[i], NULL);
+		i++;
+	}
+}
+
+void	*mandelbrot(void *arg)
+{
+	double	tmp;
+	int		i;
+	t_win	*w;
+
+	w = arg;
+	w->lx = WD / 5 * w->it;
+	while (w->lx < (WD / 5 * (w->it + 1)))
 	{
 		w->ly = -1;
-		while (++(w->ly) < w->imagey - 1)
+		while (++(w->ly) < HH)
 		{
 			ft_refresh_mandel_values(w);
-			i = -1; 
+			i = -1;
 			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter)
 			{
 				tmp = w->zr;
@@ -41,9 +62,11 @@ void		ft_mandelbrot(t_win *w)
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
 			if (i == w->iter && ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * POST) + w->lx + w->projx)] = 0;
-			else if (ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * POST) + w->lx + w->projx)] = (0 | 0 | (i * 255) / w->iter);
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 255;
+			else if (ft_in_img(w) == 1 && i < w->iter)
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = (0 | 0 | (i * 255) / w->iter);
 		}
+		w->lx++;
 	}
+	pthread_exit(0);
 }

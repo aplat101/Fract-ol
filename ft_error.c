@@ -5,68 +5,85 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/06/16 03:48:25 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/19 10:29:03 by aplat       ###    #+. /#+    ###.fr     */
+/*   Created: 2019/08/13 15:21:44 by aplat        #+#   ##    ##    #+#       */
+/*   Updated: 2019/08/22 15:09:31 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		ft_check_exist(int ac, char **av, t_env *env)
+void	ft_reset_values(t_win *w)
 {
-	int	i;
-
-	i = -1;
-	while (++i < env->nbfract)
-	{
-		if (ft_strcmp(av[ac], env->fract[i]) == 0)
-			return (0);
-	}
-	ft_usage(env);
-	return(1);
+	w->zoom = 250;
+	w->iter = 5;
+	w->x1 = -2;
+	w->y1 = -2;
+	w->x2 = 2;
+	w->y2 = 2;
+	w->imagex = (w->x2 - w->x1) * w->zoom;
+	w->imagey = (w->y2 - w->y1) * w->zoom;
+	w->lx = -1;
+	w->ly = -1;
+	w->projx = WD - w->imagex;
+	w->projy = HH - w->imagey;
 }
 
-void	ft_usage(t_env *env)
+int     ft_check_exist(int ac, char **av)
 {
-	int	i;
+    int res;
 
-	i = -1;
-	ft_putstr("Fractals Available :\n");
-	while (++i < env->nbfract)
-	{
-		ft_putstr("   |\n");
-		ft_putstr("   |-->");
-		ft_putstr(env->fract[i]);
-		ft_putchar('\n');
-	}
+	res = 0;
+	ft_strcmp(av[ac], "Julia") == 0 ? res++ : 0;
+	ft_strcmp(av[ac], "Mandelbrot") == 0 ? res++ : 0;
+	ft_strcmp(av[ac], "Ship") == 0 ? res++ : 0;
+	return (res);
+}
+
+void	ft_usage()
+{
+	ft_putstr("Fractals Available : Julia / Mandelbrot / Ship \n");
 	exit(0);
 }
 
-void	ft_error(int ac, char **av, t_env *env)
+void	ft_check_arg(char **av, int ac, t_env *env)
 {
+	if (ft_check_exist(ac, av) == 1 && ft_check_exist(ac - 1, av) == 1
+		&& ac == 2)
+	{
+		ft_alloc_win(ac, env);
+		ft_create_window(env->fp);
+		ft_create_window(env->sp);
+		env->fp->name = av[1];
+		env->sp->name = av[2];
+		ft_reset_values(env->fp);
+		ft_reset_values(env->sp);
+		ft_start_fract(env->fp);
+		ft_start_fract(env->sp);
+	}
+	else if (ac == 1 && ft_check_exist(ac, av) == 1)
+	{
+		ft_alloc_win(ac, env);
+		ft_create_window(env->fp);
+		env->fp->name = av[1];
+		ft_reset_values(env->fp);
+		ft_start_fract(env->fp);
+	}
+	else
+		ft_usage();	
+}
 
-	if (ac == 1 || ac > 3)
+void	ft_alloc_win(int ac, t_env *env)
+{
+	if (!(env->fp = malloc(sizeof(t_win))))
+		return ;
+	env->ds = 0;
+	if (ac == 2)
 	{
-		ft_usage(env);
-	}
-	else if (ac == 2)
-	{
-		ft_check_exist(1, av, env);
-		if (!(env->fp = malloc(sizeof(t_win))))
-			return ;
-		env->fp->name = av[1];
-	}
-	else if (ac == 3)
-	{
-		ft_check_exist(1, av, env);
-		ft_check_exist(2, av, env);
-		env->ds = 1;
-		if (!(env->fp = malloc(sizeof(t_win))))
-			return ;
-		env->fp->name = av[1];
 		if (!(env->sp = malloc(sizeof(t_win))))
 			return ;
-		env->sp->name = av[2];
+		env->sp->ptr = env->ptr;
+		env->ds = 1;
 	}
+	env->fp->ptr = env->ptr;
 }

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/29 23:27:35 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/24 13:19:26 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/08/20 10:43:41 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,8 +14,8 @@
 #ifndef INFO_H
 # define INFO_H
 
-# define WD 1920
-# define HH 1080
+# define WD 1000
+# define HH 1000
 # define POST (WD * 0.8)
 # define WDI (POST + 5)
 # define TIN (WD * 0.2)
@@ -43,6 +43,6 @@
 # define JULIA  "Julia"
 # define MANDEL "Mandelbrot"
 # define KOCH   "Koch"
-# define SHIP "Ship"
+# define SHIP 	"Ship"
 
 #endif
