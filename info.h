@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/29 23:27:35 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/20 10:43:41 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/14 09:56:07 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # define RED 16711680
 # define WHITE 16777215
 # define TETA (M_PI / 6)
+# define THREAD 8
 
 # define ESC    "- ESC ==> Quit program"
 # define TRANS  "- LEFT/RIGHT/UP/DOWN ==> Translate"

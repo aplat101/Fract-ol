@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/09 18:36:16 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/14 11:25:57 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,7 @@ void		ft_start_mandelbrot(t_win *w)
 
 	ft_reset_img(w);
 	i = 0;
-	while (i < 5)
+	while (i < THREAD)
 	{
 		w->it = i;
 		if(pthread_create(&w->t[i], NULL, mandelbrot, w) == -1) 
@@ -47,8 +47,8 @@ void	*mandelbrot(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = WD / 5 * w->it;
-	while (w->lx < (WD / 5 * (w->it + 1)))
+	w->lx = WD / THREAD * w->it;
+	while (w->lx < (WD / THREAD * (w->it + 1)))
 	{
 		w->ly = -1;
 		while (++(w->ly) < HH)

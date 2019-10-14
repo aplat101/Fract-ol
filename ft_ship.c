@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:42 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/22 14:57:38 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/14 09:53:50 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ void		ft_start_ship(t_win *w)
 
 	ft_reset_img(w);
 	i = 0;
-	while (i < 5)
+	while (i < THREAD)
 	{
 		w->it = i;
 		if(pthread_create(&w->t[i], NULL, &ship, w) == -1) 
@@ -39,8 +39,8 @@ void	*ship(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = WD / 5 * w->it;
-	while (w->lx < (WD / 5 * (w->it + 1)))
+	w->lx = WD / THREAD * w->it;
+	while (w->lx < (WD / THREAD * (w->it + 1)))
 	{
 		w->ly = -1;
 		while (++(w->ly) < HH)

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 11:22:11 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/14 11:06:33 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ typedef struct	s_win
 	void		*info_ptr;
 	int			*info;
 	char		*name;
-	pthread_t	t[5];
+	pthread_t	t[8];
 	double		zoomx;
 	double		zoomy;
 	double		projx;
@@ -102,6 +102,7 @@ void	ft_zoomm1(t_win *w, int x, int y);
 void	ft_zoomp1(t_win *w, int x, int y);
 
 void	ft_variant_julia(t_win *w);
+int		ft_getcolor(t_win *w, int i);
 
 int		mouse_move_w1(int x, int y, t_env *env);
 int		mouse_move_w2(int x, int y, t_env *env);
