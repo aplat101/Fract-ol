@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:06:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/22 13:25:01 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 12:55:08 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,15 +42,29 @@ int	key_release_w2(int keycode, t_env *env)
 		ft_iterp(env->sp);
 	if (keycode == K_PAD_MINUS)
 		ft_iterm(env->sp);
+	if (keycode == K_S)
+		ft_swap_fract(env->sp);
+	if (keycode == K_V)
+		ft_variant_julia(env->sp);
 	return (0);
 }
 
 int	mouse_press_w2(int button, int x, int y, t_env *env)
 {
-	y = x;
 	if (button == M_WHEELDOWN)
-		ft_zoomp(env->sp);
+		ft_zoomp1(env->sp, x, y);
 	if (button == M_WHEELUP)
-		ft_zoomm(env->sp);
+		ft_zoomm1(env->sp, x, y);
+	return (0);
+}
+
+int	mouse_move_w2(int x, int y, t_env *env)
+{
+	while (env->sp->variant == 1)
+	{
+		env->sp->mouse_x = (double)(x - (WD / 2)) / (WD / 4);
+		env->sp->mouse_y = (double)(y - (HH / 2)) / (WD / 4);
+		ft_start_fract(env->sp);
+	}
 	return (0);
 }

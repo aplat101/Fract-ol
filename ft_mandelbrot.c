@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/22 14:57:20 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/09 18:36:16 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,8 @@
 
 void		ft_refresh_mandel_values(t_win *w)
 {
-	w->cr = w->lx / w->zoom + w->x1;
-	w->ci = w->ly / w->zoom + w->y1;
+	w->cr = w->lx / w->zoomx + w->x1;
+	w->ci = w->ly / w->zoomy + w->y1;
 	w->zr = 0;
 	w->zi = 0;
 }

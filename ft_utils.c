@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:13:03 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/20 08:04:38 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 11:20:53 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,12 +29,14 @@ void	ft_mlx_keys(t_env *env)
 	mlx_hook(env->fp->win, 2, 0, key_press_w1, env);
 	mlx_hook(env->fp->win, 3, 0, key_release_w1, env);
 	mlx_hook(env->fp->win, 4, 0, mouse_press_w1, env);
+	mlx_hook(env->fp->win, 6, 0, mouse_move_w1, env);
 	mlx_hook(env->fp->win, 17, (1L << 17), close_cross, env);
 	if (env->ds == 1)
 	{
 		mlx_hook(env->sp->win, 2, 0, key_press_w2, env);
 		mlx_hook(env->sp->win, 3, 0, key_release_w2, env);
 		mlx_hook(env->sp->win, 4, 0, mouse_press_w2, env);
+		mlx_hook(env->sp->win, 6, 0, mouse_move_w2, env);
 		mlx_hook(env->sp->win, 17, (1L << 17), close_cross, env);
 	}
 	mlx_loop(env->ptr);
@@ -46,4 +48,21 @@ int		close_cross(t_env *env)
 		exit(0);
 	env->ds = 0;
 	return (0);
+}
+
+void	ft_swap_fract(t_win *w)
+{
+	int	fract;
+
+	fract = 0;
+	if (ft_strcmp(w->name, JULIA) == 0)
+		fract = 1;
+	if (ft_strcmp(w->name, MANDEL) == 0)
+		fract = 2;
+	if (ft_strcmp(w->name, SHIP) == 0)
+		fract = 3;
+	fract == 1 ? w->name = MANDEL : 0;
+	fract == 2 ? w->name = SHIP : 0;
+	fract == 3 ? w->name = JULIA : 0;
+	ft_start_fract(w);
 }

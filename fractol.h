@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/08/22 14:57:45 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 11:22:11 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,8 @@ typedef struct	s_win
 	int			*info;
 	char		*name;
 	pthread_t	t[5];
-	int			zoom;
+	double		zoomx;
+	double		zoomy;
 	double		projx;
 	double		projy;
 	double		x1;
@@ -51,11 +52,14 @@ typedef struct	s_win
 	double		zi;
 	double		cr;
 	double		ci;
+	double		mouse_x;
+	double		mouse_y;
 	double		imagex;
 	double		imagey;
 	double		lx;
 	double		ly;
 	int			it;
+	int			variant;
 }				t_win;
 
 typedef struct	s_env
@@ -92,6 +96,15 @@ void	ft_init_fract(t_env *env);
 void	ft_mlx_keys(t_env *env);
 int		close_cross(t_env *env);
 void	ft_new_img(t_win *w);
+void	ft_swap_fract(t_win *w);
+
+void	ft_zoomm1(t_win *w, int x, int y);
+void	ft_zoomp1(t_win *w, int x, int y);
+
+void	ft_variant_julia(t_win *w);
+
+int		mouse_move_w1(int x, int y, t_env *env);
+int		mouse_move_w2(int x, int y, t_env *env);
 
 //int		ft_check_exist(int ac, char **av, t_env *env);
 //void	ft_usage();
@@ -132,7 +145,7 @@ void	ft_iterm(t_win *w);
 
 void	ft_ship(t_win *w);
 
-void	ft_zoomp(t_win *w);
-void	ft_zoomm(t_win *w);
+void	ft_zoomp(t_win *w, int x, int y);
+void	ft_zoomm(t_win *w, int x, int y);
 
 #endif
