@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/14 11:25:57 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/15 12:22:12 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,8 @@ void		ft_start_mandelbrot(t_win *w)
 	int		i;
 
 	ft_reset_img(w);
+	w->imagex = (w->x2 - w->x1) * w->zoomx;
+	w->imagey = (w->y2 - w->y1) * w->zoomy;
 	i = 0;
 	while (i < THREAD)
 	{
@@ -47,11 +49,11 @@ void	*mandelbrot(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = WD / THREAD * w->it;
-	while (w->lx < (WD / THREAD * (w->it + 1)))
+	w->lx = w->imagex / THREAD * w->it;
+	while (w->lx < (w->imagex / THREAD * (w->it + 1)))
 	{
 		w->ly = -1;
-		while (++(w->ly) < HH)
+		while (++(w->ly) < w->imagey)
 		{
 			ft_refresh_mandel_values(w);
 			i = -1;
@@ -62,9 +64,9 @@ void	*mandelbrot(void *arg)
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
 			if (i == w->iter && ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 255;
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFFFFFF;
 			else if (ft_in_img(w) == 1 && i < w->iter)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = (0 | 0 | (i * 255) / w->iter);
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFFF0F5 >> (int)abs(4 * i / w->iter);
 		}
 		w->lx++;
 	}

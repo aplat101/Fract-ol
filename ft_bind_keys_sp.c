@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:06:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 12:55:08 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/15 11:01:38 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,11 +60,11 @@ int	mouse_press_w2(int button, int x, int y, t_env *env)
 
 int	mouse_move_w2(int x, int y, t_env *env)
 {
-	while (env->sp->variant == 1)
+	if (env->sp->variant == 1)
 	{
 		env->sp->mouse_x = (double)(x - (WD / 2)) / (WD / 4);
 		env->sp->mouse_y = (double)(y - (HH / 2)) / (WD / 4);
-		ft_start_fract(env->sp);
 	}
+	ft_start_fract(env->sp);
 	return (0);
 }

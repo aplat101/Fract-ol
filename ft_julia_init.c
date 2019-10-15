@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:10:58 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/14 12:10:55 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/15 12:07:26 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,8 +35,8 @@ void		ft_refresh_julia_values(t_win *w)
 {
 	w->zr = w->lx / w->zoomx + w->x1;
 	w->zi = w->ly / w->zoomy + w->y1;
-	w->cr = -0.038088;
-	w->ci = 0.9754633;
+	w->cr = w->mouse_x;
+	w->ci = w->mouse_y;
 }
 
 void		ft_start_julia(t_win *w)
@@ -103,7 +103,9 @@ void	*julia(void *arg)
 			if (i == w->iter && ft_in_img(w) == 1)
 				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
 			else if (ft_in_img(w) == 1 && i >= 0)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = ft_getcolor(w, i);
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFFFF00 >> (int)(8 * i / w->iter);
+			else if (ft_in_img(w) == 1 && (i == -1 || i == 0))
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFF0000 >> (int)abs(8 * i / w->iter);
 		}
 		w->lx++;
 	}
