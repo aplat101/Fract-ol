@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/14 11:06:33 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 12:37:34 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,7 @@ typedef struct	s_env
 	t_win		*fp;
 	t_win		*sp;
 }				t_env;
-
+//test
 int     ft_check_exist(int ac, char **av);
 void	ft_usage();
 void	ft_check_arg(char **av, int ac, t_env *env);
@@ -145,7 +145,7 @@ void	ft_iterp(t_win *w);
 void	ft_iterm(t_win *w);
 
 void	ft_ship(t_win *w);
-
+//test
 void	ft_zoomp(t_win *w, int x, int y);
 void	ft_zoomm(t_win *w, int x, int y);
 

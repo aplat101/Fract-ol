@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:05:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/15 09:51:41 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 09:54:42 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -88,8 +88,8 @@ void	ft_zoomp1(t_win *w, int x, int y)
 {
 //	printf("X ==> %d\nY ==> %d\n", x, y);
 	x = y;
-	w->zoomx += 5;
-	w->zoomy += 5;
+	w->zoomx += 10;
+	w->zoomy += 10;
 	ft_start_fract(w);
 }
 
@@ -97,8 +97,8 @@ void	ft_zoomm1(t_win *w, int x, int y)
 {
 //	printf("X ==> %d\nY ==> %d\n", x, y);
 	x = y;
-	w->zoomy -= 5;
-	w->zoomx -= 5;
+	w->zoomy -= 10;
+	w->zoomx -= 10;
 	ft_start_fract(w);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/13 15:21:44 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/15 10:59:17 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 11:55:46 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ void	ft_reset_values(t_win *w)
 	w->y1 = -2;
 	w->x2 = 2;
 	w->y2 = 2;
-	w->variant = 1;
+	w->variant = 0;
 	w->imagex = (w->x2 - w->x1) * w->zoomx;
 	w->imagey = (w->y2 - w->y1) * w->zoomy;
 	w->lx = -1;

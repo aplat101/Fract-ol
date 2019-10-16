@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:10:58 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/15 12:07:26 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 11:18:41 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -102,10 +102,8 @@ void	*julia(void *arg)
 			}
 			if (i == w->iter && ft_in_img(w) == 1)
 				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
-			else if (ft_in_img(w) == 1 && i >= 0)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFFFF00 >> (int)(8 * i / w->iter);
-			else if (ft_in_img(w) == 1 && (i == -1 || i == 0))
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0xFF0000 >> (int)abs(8 * i / w->iter);
+			else if (ft_in_img(w) == 1)
+				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
 		}
 		w->lx++;
 	}

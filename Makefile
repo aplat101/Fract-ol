@@ -6,7 +6,7 @@
 #    By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/19 16:37:18 by aplat        #+#   ##    ##    #+#        #
-#    Updated: 2019/08/22 14:26:13 by aplat       ###    #+. /#+    ###.fr      #
+#    Updated: 2019/10/16 12:39:49 by aplat       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,13 +17,14 @@ SRC = main.c ft_error.c ft_init_fract.c ft_utils.c ft_julia_init.c \
 		ft_bind_keys_fp.c ft_bind_keys_sp.c ft_translate.c ft_mandelbrot.c\
 		ft_ship.c
 
-CC = cc
+CC = gcc
 
 DEPENDENCES = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
-HEADERS = fdf.h
+HEADERS = fractol.h
+INFO = info.h
 
 LIB = libft/libft.a 
 
@@ -31,10 +32,8 @@ LIBX = minilibx_macos/libmlx.a
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-all : $(NAME)
-
-$(NAME) : $(LIB) $(LIBX) $(DEPENDENCES)
-	@$(CC) $(CFLAGS) -I $(HEADERS) -o $(NAME) $(SRC) -L./libft -lft $(LIBX) $(FRAMEWORK)
+$(NAME) : $(LIB) $(LIBX) $(DEPENDENCES) $(HEADERS) $(INFO)
+	@$(CC) $(CFLAGS) -lpthread -o $(NAME) $(SRC) -L./libft -lft $(LIBX) $(FRAMEWORK) -I $(HEADERS) -I $(INFO)
 	@echo "\033[32mCompilation ==> DONE\033[0m"
 
 $(LIB) :
@@ -42,6 +41,8 @@ $(LIB) :
 
 $(LIBX) :
 	@make -C minilibx_macos
+
+all : $(NAME)
 
 clean:
 	@rm -f $(DEPENDENCES)

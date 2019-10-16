@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/29 23:27:35 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/14 09:56:07 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 12:40:20 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,6 @@
 # define CMG	"- Color Mode ==> Graduate"
 # define JULIA  "Julia"
 # define MANDEL "Mandelbrot"
-# define KOCH   "Koch"
 # define SHIP 	"Ship"
 
 #endif
