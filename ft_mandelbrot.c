@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 11:18:04 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 15:28:36 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,25 +32,25 @@ void		ft_start_mandelbrot(t_win *w)
 	while (i < THREAD)
 	{
 		w->it = i;
-		if(pthread_create(&w->t[i], NULL, mandelbrot, w) == -1) 
+		if (pthread_create(&w->t[i], NULL, mandelbrot, w) == -1)
 		{
 			perror("pthread_create");
 			return ;
-    	}
+		}
 		pthread_join(w->t[i], NULL);
 		i++;
 	}
 }
 
-void	*mandelbrot(void *arg)
+void		*mandelbrot(void *arg)
 {
 	double	tmp;
 	int		i;
 	t_win	*w;
 
 	w = arg;
-	w->lx = w->imagex / THREAD * w->it;
-	while (w->lx < (w->imagex / THREAD * (w->it + 1)))
+	w->lx = (w->imagex / THREAD * w->it) - 1;
+	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
 	{
 		w->ly = -1;
 		while (++(w->ly) < w->imagey)
@@ -68,7 +68,6 @@ void	*mandelbrot(void *arg)
 			else if (ft_in_img(w) == 1)
 				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
 		}
-		w->lx++;
 	}
 	pthread_exit(0);
 }

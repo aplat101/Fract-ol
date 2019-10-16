@@ -6,14 +6,14 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:05:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 09:54:42 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 15:13:57 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	key_press_w1(int keycode, t_env *env)
+int		key_press_w1(int keycode, t_env *env)
 {
 	if (keycode == K_ESC)
 	{
@@ -34,10 +34,8 @@ int	key_press_w1(int keycode, t_env *env)
 	return (0);
 }
 
-int	key_release_w1(int keycode, t_env *env)
+int		key_release_w1(int keycode, t_env *env)
 {
-/*	if (keycode == K_C)
-		ft_center(env->fp);*/
 	if (keycode == K_PAD_PLUS)
 		ft_iterp(env->fp);
 	if (keycode == K_PAD_MINUS)
@@ -49,7 +47,7 @@ int	key_release_w1(int keycode, t_env *env)
 	return (0);
 }
 
-int	mouse_press_w1(int button, int x, int y, t_env *env)
+int		mouse_press_w1(int button, int x, int y, t_env *env)
 {
 	if (button == M_WHEELDOWN)
 		ft_zoomp1(env->fp, x, y);
@@ -58,7 +56,7 @@ int	mouse_press_w1(int button, int x, int y, t_env *env)
 	return (0);
 }
 
-int	mouse_move_w1(int x, int y, t_env *env)
+int		mouse_move_w1(int x, int y, t_env *env)
 {
 	if (env->fp->variant == 1 && ft_strcmp(env->fp->name, JULIA) == 0)
 	{
@@ -86,7 +84,6 @@ void	ft_iterp(t_win *w)
 
 void	ft_zoomp1(t_win *w, int x, int y)
 {
-//	printf("X ==> %d\nY ==> %d\n", x, y);
 	x = y;
 	w->zoomx += 10;
 	w->zoomy += 10;
@@ -95,7 +92,6 @@ void	ft_zoomp1(t_win *w, int x, int y)
 
 void	ft_zoomm1(t_win *w, int x, int y)
 {
-//	printf("X ==> %d\nY ==> %d\n", x, y);
 	x = y;
 	w->zoomy -= 10;
 	w->zoomx -= 10;
@@ -110,7 +106,7 @@ void	ft_zoomp(t_win *w, int x, int y)
 	dx = w->x2 - w->x1;
 	dy = w->y2 - w->y1;
 	w->zoomx = ((double)x / WD * dx) - dx / 2 + w->zoomx;
-    w->zoomy = ((double)y / HH * dy) - dy / 2 + w->zoomy;
+	w->zoomy = ((double)y / HH * dy) - dy / 2 + w->zoomy;
 	if (x >= 0 && x < WD)
 	{
 		w->x2 = w->zoomx + (dx / 1.3) / 2;
@@ -129,7 +125,7 @@ void	ft_zoomm(t_win *w, int x, int y)
 	dx = w->x2 - w->x1;
 	dy = w->y2 - w->y1;
 	w->zoomx = ((double)x / WD * dx) - dx / 2 + w->zoomx;
-    w->zoomy = ((double)y / HH * dy) - dy / 2 + w->zoomy;
+	w->zoomy = ((double)y / HH * dy) - dy / 2 + w->zoomy;
 	if (x >= 0 && x < WD)
 	{
 		w->x2 = w->zoomx + (dx * 1.3) / 2;

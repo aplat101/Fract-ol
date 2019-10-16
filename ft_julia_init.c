@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:10:58 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 11:18:41 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 15:44:00 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,8 @@ int			ft_in_img(t_win *w)
 	y = w->ly + w->projy;
 	x = w->lx + w->projx;
 	res = 0;
-	if ((y < HH && y > 0) && (x < ((WD / THREAD * (w->it + 1))) && x > ((WD / THREAD * w->it))))
+	if ((y < HH && y > 0) && (x < ((WD / THREAD * (w->it + 1)))
+		&& x > ((WD / THREAD * w->it))))
 		res = 1;
 	else if ((y < HH && y > 0) && x > 0 && x < WD)
 		res = 1;
@@ -50,7 +51,7 @@ void		ft_start_julia(t_win *w)
 	while (i < THREAD)
 	{
 		w->it = i;
-		if(pthread_create(&w->t[i], NULL, julia, w) == -1) 
+		if (pthread_create(&w->t[i], NULL, julia, w) == -1)
 		{
 			perror("pthread_create");
 			return ;
@@ -86,8 +87,8 @@ void	*julia(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = w->imagex / THREAD * w->it;
-	while (w->lx < (w->imagex / THREAD * (w->it + 1)))
+	w->lx = (w->imagex / THREAD * w->it) - 1;
+	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
 	{
 		w->ly = -1;
 		while (++(w->ly) < w->imagey)
@@ -105,7 +106,6 @@ void	*julia(void *arg)
 			else if (ft_in_img(w) == 1)
 				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
 		}
-		w->lx++;
 	}
 	pthread_exit(0);
 }

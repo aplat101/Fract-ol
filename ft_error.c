@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/13 15:21:44 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 11:55:46 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 15:11:51 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,9 +33,9 @@ void	ft_reset_values(t_win *w)
 	w->projy = HH - w->imagey;
 }
 
-int     ft_check_exist(int ac, char **av)
+int		ft_check_exist(int ac, char **av)
 {
-    int res;
+	int res;
 
 	res = 0;
 	ft_strcmp(av[ac], "Julia") == 0 ? res++ : 0;
@@ -44,7 +44,7 @@ int     ft_check_exist(int ac, char **av)
 	return (res);
 }
 
-void	ft_usage()
+void	ft_usage(void)
 {
 	ft_putstr("Fractals Available : Julia / Mandelbrot / Ship \n");
 	exit(0);
@@ -74,7 +74,7 @@ void	ft_check_arg(char **av, int ac, t_env *env)
 		ft_start_fract(env->fp);
 	}
 	else
-		ft_usage();	
+		ft_usage();
 }
 
 void	ft_alloc_win(int ac, t_env *env)

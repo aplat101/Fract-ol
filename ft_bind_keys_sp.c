@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:06:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/15 11:01:38 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/16 15:11:05 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int	key_press_w2(int keycode, t_env *env)
 {
 	if (keycode == K_ESC)
 	{
-        mlx_destroy_window(env->ptr, env->sp->win);
+		mlx_destroy_window(env->ptr, env->sp->win);
 		if (env->ds == 0)
 			exit(0);
 		env->ds = 0;
@@ -36,8 +36,6 @@ int	key_press_w2(int keycode, t_env *env)
 
 int	key_release_w2(int keycode, t_env *env)
 {
-/*	if (keycode == K_C)
-		ft_center(env->sp);*/
 	if (keycode == K_PAD_PLUS)
 		ft_iterp(env->sp);
 	if (keycode == K_PAD_MINUS)
