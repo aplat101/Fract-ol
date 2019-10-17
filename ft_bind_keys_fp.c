@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:05:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 15:13:57 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/17 16:35:13 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,15 +31,15 @@ int		key_press_w1(int keycode, t_env *env)
 		ft_move_down(env->fp);
 	if (keycode == K_UP)
 		ft_move_up(env->fp);
+	if (keycode == K_PAD_PLUS)
+		ft_iterp(env->fp);
+	if (keycode == K_PAD_MINUS)
+		ft_iterm(env->fp);
 	return (0);
 }
 
 int		key_release_w1(int keycode, t_env *env)
 {
-	if (keycode == K_PAD_PLUS)
-		ft_iterp(env->fp);
-	if (keycode == K_PAD_MINUS)
-		ft_iterm(env->fp);
 	if (keycode == K_S)
 		ft_swap_fract(env->fp);
 	if (keycode == K_V)
@@ -69,16 +69,16 @@ int		mouse_move_w1(int x, int y, t_env *env)
 
 void	ft_iterm(t_win *w)
 {
-	if (w->iter - 5 <= 10)
+	if (w->iter - 2 <= 10)
 		w->iter = 10;
 	else
-		w->iter -= 5;
+		w->iter -= 2;
 	ft_start_fract(w);
 }
 
 void	ft_iterp(t_win *w)
 {
-	w->iter += 5;
+	w->iter += 2;
 	ft_start_fract(w);
 }
 
@@ -87,6 +87,7 @@ void	ft_zoomp1(t_win *w, int x, int y)
 	x = y;
 	w->zoomx += 10;
 	w->zoomy += 10;
+//	ft_iterp(w);
 	ft_start_fract(w);
 }
 
@@ -95,10 +96,11 @@ void	ft_zoomm1(t_win *w, int x, int y)
 	x = y;
 	w->zoomy -= 10;
 	w->zoomx -= 10;
+//	ft_iterm(w);
 	ft_start_fract(w);
 }
 
-void	ft_zoomp(t_win *w, int x, int y)
+/*void	ft_zoomp(t_win *w, int x, int y)
 {
 	double	dx;
 	double	dy;
@@ -134,7 +136,7 @@ void	ft_zoomm(t_win *w, int x, int y)
 		w->y1 = w->zoomy - (dy * 1.3) / 2;
 	}
 	ft_start_fract(w);
-}
+}*/
 
 void	ft_variant_julia(t_win *w)
 {

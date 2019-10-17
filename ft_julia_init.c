@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:10:58 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 15:44:00 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/17 16:43:28 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,10 @@ int			ft_in_img(t_win *w)
 	y = w->ly + w->projy;
 	x = w->lx + w->projx;
 	res = 0;
-	if ((y < HH && y > 0) && (x < ((WD / THREAD * (w->it + 1)))
-		&& x > ((WD / THREAD * w->it))))
+	if ((x < ((WD / THREAD * (w->it + 1))) && x > ((WD / THREAD * w->it)))
+			&& (y < HH && y > 0 && x > 0 && x < WD))
 		res = 1;
-	else if ((y < HH && y > 0) && x > 0 && x < WD)
+	else if (y < HH && y > 0 && x > 0 && x < WD)
 		res = 1;
 	else
 		res = 0;
@@ -90,8 +90,8 @@ void	*julia(void *arg)
 	w->lx = (w->imagex / THREAD * w->it) - 1;
 	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
 	{
-		w->ly = -1;
-		while (++(w->ly) < w->imagey)
+		w->ly = 0;
+		while (w->ly < w->imagey)
 		{
 			ft_refresh_julia_values(w);
 			i = -1;
@@ -101,24 +101,17 @@ void	*julia(void *arg)
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
-			if (i == w->iter && ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
-			else if (ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
+			ft_getcolor(w, i);
 		}
 	}
 	pthread_exit(0);
 }
 
-int			ft_getcolor(t_win *w, int i)
+void			ft_getcolor(t_win *w, int i)
 {
-	if (i < (w->iter / 2))
-	{
-		i == -1 || i == 0 ? i = 1 : 0;
-		return (int)(abs(i * 255) | 0 | 0);
-	}
-	if (i > (w->iter / 2) && i < (w->iter * 0.9))
-		return (int)(0 | abs(i * 255) | 0);
-	else
-		return (1 | (int)((abs(i * 255) / w->iter)) | 50);
+	if (i == w->iter && ft_in_img(w) == 1)
+		w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
+	else if (ft_in_img(w) == 1)
+		w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
+	w->ly++;
 }

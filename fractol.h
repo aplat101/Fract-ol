@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 12:37:34 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/17 16:30:21 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -102,7 +102,7 @@ void	ft_zoomm1(t_win *w, int x, int y);
 void	ft_zoomp1(t_win *w, int x, int y);
 
 void	ft_variant_julia(t_win *w);
-int		ft_getcolor(t_win *w, int i);
+void	ft_getcolor(t_win *w, int i);
 
 int		mouse_move_w1(int x, int y, t_env *env);
 int		mouse_move_w2(int x, int y, t_env *env);
@@ -145,7 +145,7 @@ void	ft_iterp(t_win *w);
 void	ft_iterm(t_win *w);
 
 void	ft_ship(t_win *w);
-//test
+
 void	ft_zoomp(t_win *w, int x, int y);
 void	ft_zoomm(t_win *w, int x, int y);
 

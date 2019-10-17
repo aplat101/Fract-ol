@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:06:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 15:11:05 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/17 13:59:48 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,15 +31,15 @@ int	key_press_w2(int keycode, t_env *env)
 		ft_move_down(env->sp);
 	if (keycode == K_UP)
 		ft_move_up(env->sp);
+	if (keycode == K_PAD_PLUS)
+		ft_iterp(env->sp);
+	if (keycode == K_PAD_MINUS)
+		ft_iterm(env->sp);
 	return (0);
 }
 
 int	key_release_w2(int keycode, t_env *env)
 {
-	if (keycode == K_PAD_PLUS)
-		ft_iterp(env->sp);
-	if (keycode == K_PAD_MINUS)
-		ft_iterm(env->sp);
 	if (keycode == K_S)
 		ft_swap_fract(env->sp);
 	if (keycode == K_V)
