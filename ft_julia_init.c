@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:10:58 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 16:43:28 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/22 21:54:33 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int			ft_in_img(t_win *w)
 	y = w->ly + w->projy;
 	x = w->lx + w->projx;
 	res = 0;
-	if ((x < ((WD / THREAD * (w->it + 1))) && x > ((WD / THREAD * w->it)))
+	if ((x < ((WD / THREAD * (w->it + 1))) && x >= ((WD / THREAD * w->it)))
 			&& (y < HH && y > 0 && x > 0 && x < WD))
 		res = 1;
 	else if (y < HH && y > 0 && x > 0 && x < WD)
@@ -87,11 +87,13 @@ void	*julia(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = (w->imagex / THREAD * w->it) - 1;
-	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
+	w->lx = (WD / THREAD * w->it);
+	while (w->lx < (WD / THREAD * (w->it + 1)) && w->lx >= (WD / THREAD * w->it) && w->lx < w->imagex)
 	{
+		ft_putnbr(w->lx);
+		ft_putchar(' ');
 		w->ly = 0;
-		while (w->ly < w->imagey)
+		while (w->ly + w->projy < HH)
 		{
 			ft_refresh_julia_values(w);
 			i = -1;
@@ -103,6 +105,7 @@ void	*julia(void *arg)
 			}
 			ft_getcolor(w, i);
 		}
+		w->lx++;
 	}
 	pthread_exit(0);
 }
