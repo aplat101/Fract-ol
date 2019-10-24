@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 15:28:36 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/24 21:15:08 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,11 +49,11 @@ void		*mandelbrot(void *arg)
 	t_win	*w;
 
 	w = arg;
-	w->lx = (w->imagex / THREAD * w->it) - 1;
-	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
+	w->lx = (WD / THREAD * w->it);
+	while (w->lx < (WD / THREAD * (w->it + 1)) || w->lx < (w->imagex / THREAD * (w->it + 1)))
 	{
-		w->ly = -1;
-		while (++(w->ly) < w->imagey)
+		w->ly = 0;
+		while (w->ly + w->projy < HH)
 		{
 			ft_refresh_mandel_values(w);
 			i = -1;
@@ -63,11 +63,9 @@ void		*mandelbrot(void *arg)
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
-			if (i == w->iter && ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
-			else if (ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x0F100A * i;
+			ft_getcolor(w, i);
 		}
+		w->lx++;
 	}
 	pthread_exit(0);
 }
