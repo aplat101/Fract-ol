@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:42 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 15:29:05 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/25 14:29:04 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,8 +18,6 @@ void		ft_start_ship(t_win *w)
 	int		i;
 
 	ft_reset_img(w);
-	w->imagex = (w->x2 - w->x1) * w->zoomx;
-	w->imagey = (w->y2 - w->y1) * w->zoomy;
 	i = 0;
 	while (i < THREAD)
 	{
@@ -32,6 +30,7 @@ void		ft_start_ship(t_win *w)
 		pthread_join(w->t[i], NULL);
 		i++;
 	}
+	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
 }
 
 void		*ship(void *arg)
@@ -39,15 +38,17 @@ void		*ship(void *arg)
 	double	tmp;
 	int		i;
 	t_win	*w;
+	double	x;
+	double	y;
 
 	w = arg;
-	w->lx = (w->imagex / THREAD * w->it) - 1;
-	while (++(w->lx) < (w->imagex / THREAD * (w->it + 1)))
+	x = POST / THREAD * w->it - 1;
+	while (++x < (POST / THREAD * (w->it + 1)))
 	{
-		w->ly = -1;
-		while (++(w->ly) < w->imagey)
+		y = -1;
+		while (++y < HH)
 		{
-			ft_refresh_mandel_values(w);
+			ft_refresh_mandel_values(w, x, y);
 			i = -1;
 			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter)
 			{
@@ -55,10 +56,13 @@ void		*ship(void *arg)
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = fabs(2 * w->zi * tmp) + w->ci;
 			}
-			if (i == w->iter && ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0;
-			else if (ft_in_img(w) == 1)
-				w->img[(int)(((w->ly + w->projy) * WD) + w->lx + w->projx)] = 0x000109 * i;
+			if (y < HH && y >= 0 && x >= 0 && x < POST)
+			{
+				if (i == w->iter)
+					w->img[(int)((y * POST) + x)] = 0;
+				else
+					w->img[(int)((y * POST) + x)] = 0x0F100A * i;
+			}
 		}
 	}
 	pthread_exit(0);

@@ -6,17 +6,16 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/13 15:21:44 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/17 16:39:53 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/25 15:12:10 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_reset_values(t_win *w)
+void	ft_set_values(t_win *w)
 {
-	w->zoomx = 250;
-	w->zoomy = 250;
+	w->zoom = 250;
 	w->mouse_x = 0;
 	w->mouse_y = 0;
 	w->iter = 10;
@@ -25,12 +24,7 @@ void	ft_reset_values(t_win *w)
 	w->x2 = 2;
 	w->y2 = 2;
 	w->variant = 0;
-	w->imagex = (w->x2 - w->x1) * w->zoomx;
-	w->imagey = (w->y2 - w->y1) * w->zoomy;
-	w->lx = -1;
-	w->ly = -1;
-	w->projx = WD - w->imagex;
-	w->projy = HH - w->imagey;
+	w->flat = 0;
 }
 
 int		ft_check_exist(int ac, char **av)
@@ -60,8 +54,8 @@ void	ft_check_arg(char **av, int ac, t_env *env)
 		ft_create_window(env->sp);
 		env->fp->name = av[1];
 		env->sp->name = av[2];
-		ft_reset_values(env->fp);
-		ft_reset_values(env->sp);
+		ft_set_values(env->fp);
+		ft_set_values(env->sp);
 		ft_start_fract(env->fp);
 		ft_start_fract(env->sp);
 	}
@@ -70,7 +64,7 @@ void	ft_check_arg(char **av, int ac, t_env *env)
 		ft_alloc_win(ac, env);
 		ft_create_window(env->fp);
 		env->fp->name = av[1];
-		ft_reset_values(env->fp);
+		ft_set_values(env->fp);
 		ft_start_fract(env->fp);
 	}
 	else

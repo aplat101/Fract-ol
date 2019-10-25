@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/05/29 23:27:35 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/16 12:40:20 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/25 14:33:52 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,14 +14,10 @@
 #ifndef INFO_H
 # define INFO_H
 
-# define WD 1000
+# define WD 1250
 # define HH 1000
 # define POST (WD * 0.8)
-# define WDI (POST + 5)
-# define TIN (WD * 0.2)
-# define RED 16711680
-# define WHITE 16777215
-# define TETA (M_PI / 6)
+# define INFO (WD * 0.2)
 # define THREAD 8
 
 # define ESC    "- ESC ==> Quit program"

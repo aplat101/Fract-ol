@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:13:03 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 11:20:53 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/25 14:29:55 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	ft_create_window(t_win *w)
 	int	endian;
 
 	w->win = mlx_new_window(w->ptr, WD, HH, "Fract'ol");
-	w->img_ptr = mlx_new_image(w->ptr, WD, HH);
+	w->img_ptr = mlx_new_image(w->ptr, POST, HH);
 	w->img = (int*)mlx_get_data_addr(w->img_ptr, &(bpp), &(s_l), &(endian));
 }
 
@@ -64,5 +64,17 @@ void	ft_swap_fract(t_win *w)
 	fract == 1 ? w->name = MANDEL : 0;
 	fract == 2 ? w->name = SHIP : 0;
 	fract == 3 ? w->name = JULIA : 0;
+	ft_start_fract(w);
+}
+
+void	ft_reset_values(t_win *w)
+{
+	w->zoom = 250;
+	w->iter = 10;
+	w->x1 = -2;
+	w->y1 = -2;
+	w->x2 = 2;
+	w->y2 = 2;
+	w->variant = 0;
 	ft_start_fract(w);
 }
