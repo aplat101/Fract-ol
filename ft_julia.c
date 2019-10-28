@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/25 15:25:28 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/28 22:39:22 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,10 +25,11 @@ int			ft_in_img(int x, int y)
 	return (res);
 }
 
-void		ft_refresh_julia_values(t_win *w, int x, int y)
+void		ft_refresh_julia_values(t_win *w)
 {
-	w->zr = x / w->zoom + w->x1;
-	w->zi = y / w->zoom + w->y1;
+	w->zr = w->i->x / w->zoom + w->x1;
+	w->zi = w->i->y / w->zoom + w->y1;
+	w->iter = -1;
 }
 
 void		ft_start_julia(t_win *w)
@@ -38,21 +39,17 @@ void		ft_start_julia(t_win *w)
 	ft_reset_img(w);
 	w->cr = w->mouse_x;
 	w->ci = w->mouse_y;
-	if (w->flat == 1)
-		julia_flat(w);
-	else
+	w->iter = -1;
+	i = -1;
+	while (++i < THREAD)
 	{
-		i = -1;
-		while (++i < THREAD)
+		w->it = i;
+		if (pthread_create(&w->t[i], NULL, julia, w) == -1)
 		{
-			w->it = i;
-			if (pthread_create(&w->t[i], NULL, julia, w) == -1)
-			{
-				perror("pthread_create");
-				return ;
-	    	}
-			pthread_join(w->t[i], NULL);
-		}
+			perror("pthread_create");
+			return ;
+	   	}
+		pthread_join(w->t[i], NULL);
 	}
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
 }
@@ -80,41 +77,37 @@ void		ft_reset_img(t_win *w)
 void	*julia(void *arg)
 {
 	double	tmp;
-	int		i;
 	t_win	*w;
-	double	x;
-	double	y;
 	double	ret;
 
 	w = arg;
 	ret = (POST / THREAD * (w->it + 1));
-	x = POST / THREAD * w->it - 1;
-	while (++x < ret)
+	w->i->x = POST / THREAD * w->it - 1;
+	while (++(w->i->x) < ret)
 	{
-		y = -1;
-		while (++y < HH)
+		w->i->y = -1;
+		while (++(w->i->y) < HH)
 		{
-			ft_refresh_julia_values(w, x, y);
-			i = -1;
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter)
+			ft_refresh_julia_values(w);
+			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++(w->iter) < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
-			if (y < HH && y >= 0 && x >= 0 && x < POST)
+			if (w->i->y < HH && w->i->y >= 0 && w->i->x >= 0 && w->i->x < POST)
 			{
-				if (i == w->iter)
-					w->img[(int)((y * POST) + x)] = 0;
+				if (w->iter == w->iter_max)
+					w->img[(int)((w->i->y * POST) + w->i->x)] = 0;
 				else
-					w->img[(int)((y * POST) + x)] = 0x0F100A * i;
+					w->img[(int)((w->i->y * POST) + w->i->x)] = 0x0F100A * w->iter;
 			}
 		}
 	}
 	pthread_exit(0);
 }
 
-void	julia_flat(t_win *w)
+/*void	julia_flat(t_win *w)
 {
 	double	tmp;
 	int		i;
@@ -145,7 +138,7 @@ void	julia_flat(t_win *w)
 		}
 	}
 }
-
+*/
 /*void	ft_getcolor(t_win *w, int i)
 {
 	if (i == w->iter && ft_in_img(w) == 1)

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/25 17:15:45 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/28 22:38:43 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,8 @@ typedef struct	s_info
 	char		*zoom;
 	char		*color;
 	char		*multi;
+	char		*cr;
+	char		*ci;
 }				t_info;
 
 typedef struct	s_point
@@ -53,6 +55,7 @@ typedef struct	s_win
 	double		y1;
 	double		x2;
 	double		y2;
+	int			iter_max;
 	int			iter;
 	double		zr;
 	double		zi;
@@ -64,6 +67,7 @@ typedef struct	s_win
 	int			variant;
 	int			flat;
 	t_info		*inf;
+	t_point		*i;
 }				t_win;
 
 
@@ -132,7 +136,7 @@ void	ft_init_fract_values(t_win *w);
 void	ft_refresh_mandel_values(t_win *w, int x, int y);
 void	ft_mandelbrot(t_win *w);
 
-void	ft_refresh_julia_values(t_win *w, int x, int y);
+void	ft_refresh_julia_values(t_win *w);
 void	ft_julia(t_win *w);
 
 void	ft_center(t_win *w);

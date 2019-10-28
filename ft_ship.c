@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:42 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/25 14:29:04 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/28 22:33:15 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,7 +50,7 @@ void		*ship(void *arg)
 		{
 			ft_refresh_mandel_values(w, x, y);
 			i = -1;
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter)
+			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
@@ -58,7 +58,7 @@ void		*ship(void *arg)
 			}
 			if (y < HH && y >= 0 && x >= 0 && x < POST)
 			{
-				if (i == w->iter)
+				if (i == w->iter_max)
 					w->img[(int)((y * POST) + x)] = 0;
 				else
 					w->img[(int)((y * POST) + x)] = 0x0F100A * i;
