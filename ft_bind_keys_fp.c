@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:05:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/28 22:32:03 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/30 17:44:01 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,73 +61,4 @@ int		mouse_move_w1(int x, int y, t_env *env)
 	}
 	ft_start_fract(env->fp);
 	return (0);
-}
-
-void	ft_iterm(t_win *w)
-{
-	if (w->iter_max - 2 <= 10)
-		w->iter_max = 10;
-	else
-		w->iter_max -= 2;
-	ft_start_fract(w);
-}
-
-void	ft_iterp(t_win *w)
-{
-	w->iter_max += 2;
-	ft_start_fract(w);
-}
-
-void	ft_zoomp(t_win *w, int x, int y)
-{
-	w->x1 = ((double)x / w->zoom + w->x1) - (x / (w->zoom * 1.3));
-	w->y1 = ((double)y / w->zoom + w->y1) - (y / (w->zoom * 1.3));
-	w->x2 = ((double)x / w->zoom + w->x2) - (x / (w->zoom * 1.3));
-	w->y2 = ((double)y / w->zoom + w->y2) - (y / (w->zoom * 1.3));
-	w->zoom *= 1.3;
-	w->iter_max++;
-	ft_start_fract(w);
-}
-
-void	ft_zoomm(t_win *w, int x, int y)
-{
-	if (w->zoom == 100)
-		return ;
-	w->x1 = ((double)x / w->zoom + w->x1) - (x / (w->zoom / 1.3));
-	w->y1 = ((double)y / w->zoom + w->y1) - (y / (w->zoom / 1.3));
-	w->x2 = ((double)x / w->zoom + w->x2) - (x / (w->zoom / 1.3));
-	w->y2 = ((double)y / w->zoom + w->y2) - (y / (w->zoom / 1.3));
-	if (w->zoom / 1.3 < 100)
-		w->zoom = 100;
-	else
-		w->zoom /= 1.3;
-	if (w->iter_max - 1 <= 10)
-		w->iter_max = 10;
-	else
-		w->iter_max--;
-	ft_start_fract(w);
-}
-
-void	ft_variant_julia(t_win *w)
-{
-	int	res;
-
-	res = w->variant;
-	if (res == 0)
-		w->variant = 1;
-	else
-		w->variant = 0;
-	ft_start_fract(w);
-}
-
-void	ft_swap_multi(t_win *w)
-{
-	int	res;
-
-	res = w->flat;
-	if (res == 0)
-		w->flat = 1;
-	else
-		w->flat = 0;
-	ft_start_fract(w);
 }

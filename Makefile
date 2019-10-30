@@ -6,7 +6,7 @@
 #    By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/19 16:37:18 by aplat        #+#   ##    ##    #+#        #
-#    Updated: 2019/10/25 14:31:30 by aplat       ###    #+. /#+    ###.fr      #
+#    Updated: 2019/10/30 17:44:12 by aplat       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,7 +15,7 @@ NAME = fractol
 
 SRC = main.c ft_error.c ft_init_fract.c ft_utils.c ft_julia.c \
 		ft_bind_keys_fp.c ft_bind_keys_sp.c ft_info.c ft_mandelbrot.c\
-		ft_ship.c
+		ft_ship.c ft_mlx.c ft_zoomiter.c
 
 CC = gcc
 

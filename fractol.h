@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/28 22:38:43 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/30 17:54:59 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,6 +68,7 @@ typedef struct	s_win
 	int			flat;
 	t_info		*inf;
 	t_point		*i;
+	double		ret;
 }				t_win;
 
 
@@ -140,7 +141,7 @@ void	ft_refresh_julia_values(t_win *w);
 void	ft_julia(t_win *w);
 
 void	ft_center(t_win *w);
-int		ft_in_img(int x, int y);
+int		ft_in_img(t_win *w);
 void	ft_iterp(t_win *w);
 void	ft_iterm(t_win *w);
 

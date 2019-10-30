@@ -6,24 +6,12 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/28 22:39:22 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/30 23:45:20 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int			ft_in_img(int x, int y)
-{
-	int		res;
-
-	res = 0;
-	if (y < HH && y >= 0 && x >= 0 && x < POST)
-		res = 1;
-	else
-		res = 0;
-	return (res);
-}
 
 void		ft_refresh_julia_values(t_win *w)
 {
@@ -36,7 +24,7 @@ void		ft_start_julia(t_win *w)
 {
 	int		i;
 
-	ft_reset_img(w);
+	ft_create_info(w);
 	w->cr = w->mouse_x;
 	w->ci = w->mouse_y;
 	w->iter = -1;
@@ -44,6 +32,7 @@ void		ft_start_julia(t_win *w)
 	while (++i < THREAD)
 	{
 		w->it = i;
+		w->ret = (POST / THREAD * (w->it + 1));
 		if (pthread_create(&w->t[i], NULL, julia, w) == -1)
 		{
 			perror("pthread_create");
@@ -54,42 +43,20 @@ void		ft_start_julia(t_win *w)
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
 }
 
-void		ft_reset_img(t_win *w)
-{
-	int 	i;
-	int		j;
-
-	i = 0;
-	while (i < HH)
-	{
-		j = 0;
-		while (j < POST)
-		{
-			w->img[(int)((i * POST) + j)] = 0;
-			j++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
-	ft_create_info(w);
-}
-
 void	*julia(void *arg)
 {
 	double	tmp;
 	t_win	*w;
-	double	ret;
 
 	w = arg;
-	ret = (POST / THREAD * (w->it + 1));
 	w->i->x = POST / THREAD * w->it - 1;
-	while (++(w->i->x) < ret)
+	while (++(w->i->x) < w->ret)
 	{
 		w->i->y = -1;
 		while (++(w->i->y) < HH)
 		{
 			ft_refresh_julia_values(w);
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++(w->iter) < w->iter_max)
+			while ((w->zr * w->zr + w->zi * w->zi) < 4 && ++(w->iter) < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;

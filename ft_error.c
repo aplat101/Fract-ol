@@ -6,30 +6,12 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/13 15:21:44 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/28 22:31:40 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/30 17:48:36 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_set_values(t_win *w)
-{
-	w->zoom = 250;
-	w->mouse_x = 0;
-	w->mouse_y = 0;
-	w->iter_max = 10;
-	w->x1 = -2;
-	w->y1 = -2;
-	w->x2 = 2;
-	w->y2 = 2;
-	w->variant = 0;
-	w->flat = 0;
-	if (!(w->i = malloc(sizeof(t_point))))
-		return ;
-	w->i->x = 0;
-	w->i->y = 0;
-}
 
 int		ft_check_exist(int ac, char **av)
 {

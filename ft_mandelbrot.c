@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/28 22:32:31 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/10/30 23:45:41 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,6 @@ void		ft_start_mandelbrot(t_win *w)
 {
 	int		i;
 
-	ft_reset_img(w);
 	i = 0;
 	while (i < THREAD)
 	{
