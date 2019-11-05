@@ -6,14 +6,14 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:37:40 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/30 17:55:09 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/04 18:57:50 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_start_fract(t_win *w)
+void		ft_start_fract(t_win *w)
 {
 	if (ft_strcmp(w->name, JULIA) == 0)
 		ft_start_julia(w);
@@ -23,7 +23,7 @@ void	ft_start_fract(t_win *w)
 		ft_start_ship(w);
 }
 
-void	ft_set_values(t_win *w)
+void		ft_set_values(t_win *w)
 {
 	w->zoom = 250;
 	w->mouse_x = 0;
@@ -54,7 +54,7 @@ int			ft_in_img(t_win *w)
 	return (res);
 }
 
-void	ft_reset_values(t_win *w)
+void		ft_reset_values(t_win *w)
 {
 	w->zoom = 250;
 	w->iter_max = 10;

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/30 23:45:20 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/04 19:01:03 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,7 @@ void		ft_start_julia(t_win *w)
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
 }
 
-void	*julia(void *arg)
+void		*julia(void *arg)
 {
 	double	tmp;
 	t_win	*w;

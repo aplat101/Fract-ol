@@ -6,16 +6,16 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:13:03 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/30 17:48:54 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/04 19:00:04 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_variant_julia(t_win *w)
+void		ft_variant_julia(t_win *w)
 {
-	int	res;
+	int		res;
 
 	res = w->variant;
 	if (res == 0)
@@ -25,9 +25,9 @@ void	ft_variant_julia(t_win *w)
 	ft_start_fract(w);
 }
 
-void	ft_swap_multi(t_win *w)
+void		ft_swap_multi(t_win *w)
 {
-	int	res;
+	int		res;
 
 	res = w->flat;
 	if (res == 0)
@@ -37,9 +37,9 @@ void	ft_swap_multi(t_win *w)
 	ft_start_fract(w);
 }
 
-void	ft_swap_fract(t_win *w)
+void		ft_swap_fract(t_win *w)
 {
-	int	fract;
+	int		fract;
 
 	fract = 0;
 	if (ft_strcmp(w->name, JULIA) == 0)
@@ -56,7 +56,7 @@ void	ft_swap_fract(t_win *w)
 
 void		ft_reset_img(t_win *w)
 {
-	int 	i;
+	int		i;
 	int		j;
 
 	i = 0;
