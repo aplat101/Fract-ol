@@ -6,19 +6,20 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/30 23:45:41 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/07 06:06:58 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		ft_refresh_mandel_values(t_win *w, int x, int y)
+void		ft_refresh_mandel_values(t_win *w)
 {
 	w->zr = 0;
 	w->zi = 0;
-	w->cr = x / w->zoom + w->x1;
-	w->ci = y / w->zoom + w->y1;
+	w->cr = w->i->x / w->zoom + w->x1;
+	w->ci = w->i->y / w->zoom + w->y1;
+	w->iter = -1;
 }
 
 void		ft_start_mandelbrot(t_win *w)
@@ -38,37 +39,34 @@ void		ft_start_mandelbrot(t_win *w)
 		i++;
 	}
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
+	ft_create_info(w);
 }
 
 void		*mandelbrot(void *arg)
 {
 	double	tmp;
-	int		i;
 	t_win	*w;
-	double	x;
-	double	y;
 
 	w = arg;
-	x = POST / THREAD * w->it - 1;
-	while (++x < (POST / THREAD * (w->it + 1)))
+	w->i->x = POST / THREAD * w->it - 1;
+	while (++(w->i->x) < (POST / THREAD * (w->it + 1)))
 	{
-		y = -1;
-		while (++y < HH)
+		w->i->y = -1;
+		while (++(w->i->y) < HH)
 		{
-			ft_refresh_mandel_values(w, x, y);
-			i = -1;
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter_max)
+			ft_refresh_mandel_values(w);
+			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++(w->iter) < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
-			if (y < HH && y >= 0 && x >= 0 && x < POST)
+			if (w->i->y < HH && w->i->y >= 0 && w->i->x >= 0 && w->i->x < POST)
 			{
-				if (i == w->iter_max)
-					w->img[(int)((y * POST) + x)] = 0;
+				if (w->iter == w->iter_max)
+					w->img[(int)((w->i->y * POST) + w->i->x)] = 0;
 				else
-					w->img[(int)((y * POST) + x)] = 0x0F100A * i;
+					w->img[(int)((w->i->y * POST) + w->i->x)] = 0x0F100A * w->iter;
 			}
 		}
 	}

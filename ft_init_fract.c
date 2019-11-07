@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:37:40 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/04 18:57:50 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/07 06:02:38 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,20 +42,9 @@ void		ft_set_values(t_win *w)
 	w->ret = 0;
 }
 
-int			ft_in_img(t_win *w)
-{
-	int		res;
-
-	res = 0;
-	if (w->i->y < HH && w->i->y >= 0 && w->i->x >= 0 && w->i->x < POST)
-		res = 1;
-	else
-		res = 0;
-	return (res);
-}
-
 void		ft_reset_values(t_win *w)
 {
+	ft_reset_img(w);
 	w->zoom = 250;
 	w->iter_max = 10;
 	w->x1 = -2;

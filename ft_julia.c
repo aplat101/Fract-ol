@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/04 19:01:03 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/07 05:44:39 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,7 @@ void		ft_start_julia(t_win *w)
 		pthread_join(w->t[i], NULL);
 	}
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
+	ft_create_info(w);
 }
 
 void		*julia(void *arg)
