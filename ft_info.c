@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 14:31:12 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/07 06:39:28 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 23:00:55 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,21 +44,24 @@ void	ft_fill_info(t_win *w)
 	ft_take_info(w);
 	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3),
 	HH * 0.02, 269455, "Fractol");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.06, 269455, w->inf->name);
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.09, 269455, w->inf->iter);
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.12, 269455, w->inf->zoom);
-	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.16, 269455, "Controls");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.2, 269455, "S ==> Swap Fractal");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.23, 269455, "+ / - ==> Iterations");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.26, 269455, "UP / Down ==> Zoom");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.29, 269455, "R ==> Reset Values");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.32, 269455, "C ==> Swap Color");
-	mlx_string_put(w->ptr, w->win, POST + 10, HH * 0.35, 269455, "V ==> Variant Julia");
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.06, 269455, w->inf->name);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.09, 269455, w->inf->iter);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.12, 269455, w->inf->zoom);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.15, 269455, w->inf->color);
+	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.19, 269455, "Controls");
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.23, 269455, ESC);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.26, 269455, SWAP);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.29, 269455, ITER);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.32, 269455, ZP);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.35, 269455, ZM);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.38, 269455, RESET);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.41, 269455, SWAPC);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.44, 269455, VAR);
 	if (ft_strcmp(w->name, JULIA) == 0 && w->variant == 0)
-		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.38, 269455, "|__ disabled");
+		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.47, 269455, DIS);
 	else if (ft_strcmp(w->name, JULIA) == 0 && w->variant == 1)
-		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.38, 269455, "|__ enabled");
-	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.42, 269455, "Colors");
+		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.47, 269455, ENA);
+	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.51, 269455, "Colors");
 }
 
 void	ft_take_info(t_win *w)
@@ -68,4 +71,5 @@ void	ft_take_info(t_win *w)
 	w->inf->name = ft_strjoin("Name ==> ", w->name);
 	w->inf->iter = ft_strjoin("Iterations ==> ", ft_itoa(w->iter_max));
 	w->inf->zoom = ft_strjoin("Zoom ==> ", ft_itoa(w->zoom));
+	w->inf->color = ft_strjoin("Mode Color ==> ", ft_itoa(w->c));
 }

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/07 06:23:06 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 23:23:28 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,11 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+
+typedef	struct	s_col
+{
+	int			c[8];
+}				t_col;
 
 typedef struct	s_info
 {
@@ -67,6 +72,7 @@ typedef struct	s_win
 	t_info		*inf;
 	t_point		*i;
 	double		ret;
+	int			c;
 }				t_win;
 
 
@@ -170,6 +176,13 @@ void	*mandelbrot(void *arg);
 
 void	ft_start_ship(t_win *w);
 void	*ship(void *arg);
+
+/*
+** Ft_color.c
+*/
+
+void	ft_swap_color(t_win *w);
+int		ft_get_color(t_win *w);
 
 void	ft_mandelbrot(t_win *w);
 void	ft_init_fract(t_env *env);

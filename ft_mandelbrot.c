@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/07 06:06:58 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/13 23:02:00 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,13 +61,7 @@ void		*mandelbrot(void *arg)
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
 				w->zi = (2 * w->zi * tmp) + w->ci;
 			}
-			if (w->i->y < HH && w->i->y >= 0 && w->i->x >= 0 && w->i->x < POST)
-			{
-				if (w->iter == w->iter_max)
-					w->img[(int)((w->i->y * POST) + w->i->x)] = 0;
-				else
-					w->img[(int)((w->i->y * POST) + w->i->x)] = 0x0F100A * w->iter;
-			}
+			ft_get_color(w);
 		}
 	}
 	pthread_exit(0);
