@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 14:31:12 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 23:00:55 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 23:49:54 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,10 +66,22 @@ void	ft_fill_info(t_win *w)
 
 void	ft_take_info(t_win *w)
 {
+	int	i;
+
+	i = -1;
 	if (!(w->inf = malloc(sizeof(t_info))))
 		return ;
 	w->inf->name = ft_strjoin("Name ==> ", w->name);
 	w->inf->iter = ft_strjoin("Iterations ==> ", ft_itoa(w->iter_max));
 	w->inf->zoom = ft_strjoin("Zoom ==> ", ft_itoa(w->zoom));
 	w->inf->color = ft_strjoin("Mode Color ==> ", ft_itoa(w->c));
+	if (!(w->inf->col = (char**)malloc(sizeof(char*) * 7)))
+		return ;
+	while (++i < 7)
+	{
+		printf("%d\n", w->inf->c[i]);
+		w->inf->col[i] = ft_strjoin("", ft_itoa(w->inf->c[i]));
+		printf("INT ==> %d\n", i);
+		printf("%s \n", w->inf->col[i]);
+	}
 }

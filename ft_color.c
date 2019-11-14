@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/13 19:37:55 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 23:45:23 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 23:51:48 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,8 @@ int				ft_get_color(t_win *w)
 		else
 			w->img[(int)((w->i->y * POST) + w->i->x)] = i[w->c][w->iter % 7];
 	}
+	if (w->i->x == POST - 1 && w->i->y == HH - 1)
+		ft_take_color(w, i[w->c]);
 	return (0);
 }
 
@@ -41,4 +43,16 @@ void			ft_swap_color(t_win *w)
 	else
 		++(w->c);
 	ft_start_fract(w);
+}
+
+void			ft_take_color(t_win *w, int *color)
+{
+	int			i;
+
+	i = 7;
+	while (--i >= 0)
+	{
+		w->inf->c[i] = color[i];
+		printf("Check into ft_color %d && %d\n", w->inf->c[i], color[i]);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 23:23:28 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/14 23:51:29 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,11 +23,6 @@
 # include <math.h>
 # include <stdio.h>
 
-typedef	struct	s_col
-{
-	int			c[8];
-}				t_col;
-
 typedef struct	s_info
 {
 	char		*name;
@@ -35,6 +30,8 @@ typedef struct	s_info
 	char		*zoom;
 	char		*color;
 	char		*multi;
+	int			c[7];
+	char		**col;
 }				t_info;
 
 typedef struct	s_point
@@ -183,6 +180,7 @@ void	*ship(void *arg);
 
 void	ft_swap_color(t_win *w);
 int		ft_get_color(t_win *w);
+void	ft_take_color(t_win *w, int *color);
 
 void	ft_mandelbrot(t_win *w);
 void	ft_init_fract(t_env *env);
