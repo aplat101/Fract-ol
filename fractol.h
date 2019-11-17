@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 23:51:29 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/17 19:24:22 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,6 +70,7 @@ typedef struct	s_win
 	t_point		*i;
 	double		ret;
 	int			c;
+	int			fc;
 }				t_win;
 
 
@@ -97,6 +98,7 @@ void	ft_alloc_win(int ac, t_env *env);
 void	ft_start_fract(t_win *w);
 void	ft_reset_values(t_win *w);
 void	ft_set_values(t_win *w);
+void	ft_set_malloc(t_win *w);
 
 /*
 ** Ft_zoomiter.c
@@ -140,6 +142,7 @@ int		close_cross(t_env *env);
 void	ft_create_info(t_win *w);
 void	ft_fill_info(t_win *w);
 void	ft_take_info(t_win *w);
+char	*ft_int_to_hex(int	nb);
 
 /*
 ** Ft_utils.c

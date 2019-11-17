@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 23:52:57 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/17 10:03:14 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@ void		ft_start_julia(t_win *w)
 {
 	int		i;
 
-	ft_create_info(w);
 	w->cr = w->mouse_x;
 	w->ci = w->mouse_y;
 	w->iter = -1;
@@ -41,6 +40,7 @@ void		ft_start_julia(t_win *w)
 		pthread_join(w->t[i], NULL);
 	}
 	mlx_put_image_to_window(w->img, w->win, w->img_ptr, 0, 0);
+	ft_create_info(w);
 }
 
 void		*julia(void *arg)

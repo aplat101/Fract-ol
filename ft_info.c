@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 14:31:12 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/14 23:49:54 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/17 19:25:22 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,50 +18,48 @@ void	ft_create_info(t_win *w)
 	int	bpp;
 	int	s_l;
 	int	endian;
+	int	x;
+	int	y;
 
 	w->info_ptr = mlx_new_image(w->ptr, INFO, HH);
 	w->info = (int*)mlx_get_data_addr(w->info_ptr, &(bpp), &(s_l), &(endian));
+	y = (HH * 0.69) - 1;
+	while (++y < HH * 0.97)
+	{
+		x = (INFO / 2) - 1;
+		while (++x < INFO - 20)
+			w->info[(int)((y * INFO) + x)] =
+			w->inf->c[(int)((y / (HH * 0.04) - (0.69 / 0.04)))];
+	}
+	mlx_put_image_to_window(w->info, w->win, w->info_ptr, POST, 0);
 	ft_fill_info(w);
 }
 
 void	ft_fill_info(t_win *w)
 {
-	int	x;
-	int	y;
+	int	cent;
 
-	y = -1;
-	while (++y < HH)
-	{
-		x = -1;
-		while (++x < INFO)
-		{
-			if ((x >= 0 && x <= 3) || (x < INFO && x >= INFO - 4)
-				|| (y >= 0 && y <= 4) || (y < HH && y >= HH - 4))
-				w->info[(int)((y * INFO) + x)] = 269455;
-		}
-	}
-	mlx_put_image_to_window(w->info, w->win, w->info_ptr, POST, 0);
+	cent = POST + ((WD - POST) * 0.3);
 	ft_take_info(w);
-	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3),
-	HH * 0.02, 269455, "Fractol");
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.06, 269455, w->inf->name);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.09, 269455, w->inf->iter);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.12, 269455, w->inf->zoom);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.15, 269455, w->inf->color);
-	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.19, 269455, "Controls");
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.23, 269455, ESC);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.26, 269455, SWAP);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.29, 269455, ITER);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.32, 269455, ZP);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.35, 269455, ZM);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.38, 269455, RESET);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.41, 269455, SWAPC);
-	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.44, 269455, VAR);
-	if (ft_strcmp(w->name, JULIA) == 0 && w->variant == 0)
-		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.47, 269455, DIS);
-	else if (ft_strcmp(w->name, JULIA) == 0 && w->variant == 1)
-		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.47, 269455, ENA);
-	mlx_string_put(w->ptr, w->win, POST + ((WD - POST) * 0.3), HH * 0.51, 269455, "Colors");
+	mlx_string_put(w->ptr, w->win, cent, HH * 0.02, w->fc, "Fractol");
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.07, w->fc, w->inf->name);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.11, w->fc, w->inf->iter);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.15, w->fc, w->inf->zoom);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.19, w->fc, w->inf->color);
+	mlx_string_put(w->ptr, w->win, cent, HH * 0.24, w->fc, "Controls");
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.28, w->fc, ESC);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.32, w->fc, SWAP);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.36, w->fc, ITER);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.40, w->fc, ZP);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.44, w->fc, ZM);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.48, w->fc, RESET);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.52, w->fc, SWAPC);
+	mlx_string_put(w->ptr, w->win, POSTP, HH * 0.56, w->fc, VAR);
+	if (w->variant == 0)
+		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.60, w->fc, DIS);
+	else if (w->variant == 1)
+		mlx_string_put(w->ptr, w->win, POST + 30, HH * 0.60, w->fc, ENA);
+	mlx_string_put(w->ptr, w->win, cent + 10, HH * 0.65, w->fc, "Colors");
 }
 
 void	ft_take_info(t_win *w)
@@ -69,19 +67,35 @@ void	ft_take_info(t_win *w)
 	int	i;
 
 	i = -1;
-	if (!(w->inf = malloc(sizeof(t_info))))
-		return ;
-	w->inf->name = ft_strjoin("Name ==> ", w->name);
-	w->inf->iter = ft_strjoin("Iterations ==> ", ft_itoa(w->iter_max));
-	w->inf->zoom = ft_strjoin("Zoom ==> ", ft_itoa(w->zoom));
-	w->inf->color = ft_strjoin("Mode Color ==> ", ft_itoa(w->c));
-	if (!(w->inf->col = (char**)malloc(sizeof(char*) * 7)))
-		return ;
+	w->inf->name = ft_strjoin("- Name ==> ", w->name);
+	w->inf->iter = ft_strjoin("- Iterations ==> ", ft_itoa(w->iter_max));
+	w->inf->zoom = ft_strjoin("- Zoom ==> ", ft_itoa(w->zoom));
+	w->inf->color = ft_strjoin("- Mode Color ==> ", ft_itoa(w->c));
 	while (++i < 7)
 	{
-		printf("%d\n", w->inf->c[i]);
-		w->inf->col[i] = ft_strjoin("", ft_itoa(w->inf->c[i]));
-		printf("INT ==> %d\n", i);
-		printf("%s \n", w->inf->col[i]);
+		w->inf->col[i] = ft_strjoin("- ", ft_int_to_hex(w->inf->c[i]));
+		mlx_string_put(w->ptr, w->win, POSTP, HH * (0.70 + (i * 0.04)),
+		w->inf->c[i], w->inf->col[i]);
 	}
+}
+
+char		*ft_int_to_hex(int	nb)
+{
+	int		i;
+	char	*res;
+
+	res = ft_strnew(7);
+	res[0] = '#';
+	i = 7;
+	while (--i > 0)
+	{
+		res[i] = '0';
+		if (nb % 16 > 9)
+			res[i] = 65 + (nb % 16) - 10;
+		else
+			res[i] = 48 + (nb % 16);
+		nb /= 16;
+	}
+	res[7] = '\0';
+	return (res);
 }

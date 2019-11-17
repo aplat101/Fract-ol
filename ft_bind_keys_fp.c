@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 08:05:45 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 23:24:36 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/17 19:40:49 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ int		key_release_w1(int keycode, t_env *env)
 {
 	if (keycode == K_S)
 		ft_swap_fract(env->fp);
-	if (keycode == K_V)
+	if (keycode == K_V && ft_strcmp(env->fp->name, JULIA) == 0)
 		ft_variant_julia(env->fp);
 	if (keycode == K_R)
 		ft_reset_values(env->fp);

@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 15:37:40 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 22:55:27 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/17 16:46:56 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@ void		ft_start_fract(t_win *w)
 
 void		ft_set_values(t_win *w)
 {
+	ft_set_malloc(w);
 	w->zoom = 250;
 	w->mouse_x = 0;
 	w->mouse_y = 0;
@@ -35,8 +36,6 @@ void		ft_set_values(t_win *w)
 	w->y2 = 2;
 	w->variant = 0;
 	w->flat = 0;
-	if (!(w->i = malloc(sizeof(t_point))))
-		return ;
 	w->i->x = 0;
 	w->i->y = 0;
 	w->ret = 0;
@@ -54,4 +53,19 @@ void		ft_reset_values(t_win *w)
 	w->y2 = 2;
 	w->variant = 0;
 	ft_start_fract(w);
+}
+
+void		ft_set_malloc(t_win *w)
+{
+	int		i;
+
+	i = 7;
+	if (!(w->i = malloc(sizeof(t_point))))
+		return ;
+	if (!(w->inf = malloc(sizeof(t_info))))
+		return ;
+	if (!(w->inf->col = (char**)malloc(sizeof(char*) * 7)))
+		return ;
+	while (--i >= 0)
+		w->inf->col[i] = ft_strnew(8);
 }
