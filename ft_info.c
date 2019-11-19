@@ -6,20 +6,20 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 14:31:12 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/17 19:25:22 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/19 06:09:05 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_create_info(t_win *w)
+void		ft_create_info(t_win *w)
 {
-	int	bpp;
-	int	s_l;
-	int	endian;
-	int	x;
-	int	y;
+	int		bpp;
+	int		s_l;
+	int		endian;
+	int		x;
+	int		y;
 
 	w->info_ptr = mlx_new_image(w->ptr, INFO, HH);
 	w->info = (int*)mlx_get_data_addr(w->info_ptr, &(bpp), &(s_l), &(endian));
@@ -35,9 +35,9 @@ void	ft_create_info(t_win *w)
 	ft_fill_info(w);
 }
 
-void	ft_fill_info(t_win *w)
+void		ft_fill_info(t_win *w)
 {
-	int	cent;
+	int		cent;
 
 	cent = POST + ((WD - POST) * 0.3);
 	ft_take_info(w);
@@ -62,9 +62,9 @@ void	ft_fill_info(t_win *w)
 	mlx_string_put(w->ptr, w->win, cent + 10, HH * 0.65, w->fc, "Colors");
 }
 
-void	ft_take_info(t_win *w)
+void		ft_take_info(t_win *w)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	w->inf->name = ft_strjoin("- Name ==> ", w->name);
@@ -79,7 +79,7 @@ void	ft_take_info(t_win *w)
 	}
 }
 
-char		*ft_int_to_hex(int	nb)
+char		*ft_int_to_hex(int nb)
 {
 	int		i;
 	char	*res;

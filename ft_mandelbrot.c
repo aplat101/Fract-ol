@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 23:02:00 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/19 06:07:38 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,8 @@ void		*mandelbrot(void *arg)
 		while (++(w->i->y) < HH)
 		{
 			ft_refresh_mandel_values(w);
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++(w->iter) < w->iter_max)
+			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 &&
+				++(w->iter) < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;

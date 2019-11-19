@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/14 16:56:42 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/13 20:44:11 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/19 06:08:16 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,8 @@ void		*ship(void *arg)
 		while (++(w->i->y) < HH)
 		{
 			ft_refresh_mandel_values(w);
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++(w->iter) < w->iter_max)
+			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 &&
+				++(w->iter) < w->iter_max)
 			{
 				tmp = w->zr;
 				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
