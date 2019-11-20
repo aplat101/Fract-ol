@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/30 17:43:34 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/17 19:36:18 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 12:21:55 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,9 +30,9 @@ void	ft_iterp(t_win *w)
 
 void	ft_zoomp(t_win *w, int x, int y)
 {
-	if (w->zoom * 1.3 > 100000)
+	if (w->zoom * 1.3 > 100000000)
 	{
-		w->zoom = 100000;
+		w->zoom = 100000000;
 		return ;
 	}
 	w->x1 = ((double)x / w->zoom + w->x1) - (x / (w->zoom * 1.3));
