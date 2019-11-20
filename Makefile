@@ -6,7 +6,7 @@
 #    By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/04/19 16:37:18 by aplat        #+#   ##    ##    #+#        #
-#    Updated: 2019/11/13 19:55:28 by aplat       ###    #+. /#+    ###.fr      #
+#    Updated: 2019/11/20 12:06:05 by aplat       ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,7 +21,7 @@ CC = gcc
 
 DEPENDENCES = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 HEADERS = fractol.h
 INFO = info.h

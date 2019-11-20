@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/06/16 03:12:14 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/17 19:24:22 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 12:07:25 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,6 @@ typedef struct	s_info
 	char		*zoom;
 	char		*color;
 	char		*multi;
-	int			c[7];
 	char		**col;
 }				t_info;
 
@@ -70,6 +69,7 @@ typedef struct	s_win
 	t_point		*i;
 	double		ret;
 	int			c;
+	int			col[7];
 	int			fc;
 }				t_win;
 
@@ -143,6 +143,7 @@ void	ft_create_info(t_win *w);
 void	ft_fill_info(t_win *w);
 void	ft_take_info(t_win *w);
 char	*ft_int_to_hex(int	nb);
+void	ft_free_info(t_win *w);
 
 /*
 ** Ft_utils.c
@@ -152,7 +153,6 @@ void	ft_swap_fract(t_win *w);
 void	ft_variant_julia(t_win *w);
 void	ft_reset_img(t_win *w);
 int		ft_in_img(t_win *w);
-void	ft_swap_multi(t_win *w);
 
 /*
 ** Ft_julia.c
@@ -191,9 +191,7 @@ void	ft_new_img(t_win *w);
 void	ft_error(int ac, char **av, t_env *env);
 void	ft_init_switch(t_env *env);
 void	ft_init_fract_values(t_win *w);
-void	ft_julia(t_win *w);
 void	ft_center(t_win *w);
 void	ft_ship(t_win *w);
-void	julia_flat(t_win *w);
 
 #endif

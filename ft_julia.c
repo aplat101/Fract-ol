@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 11:26:22 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 06:07:08 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 11:02:07 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,44 +68,3 @@ void		*julia(void *arg)
 	}
 	pthread_exit(0);
 }
-
-/*void	julia_flat(t_win *w)
-{
-	double	tmp;
-	int		i;
-	double	x;
-	double	y;
-
-	x = -1;
-	while (++x < POST)
-	{
-		y = -1;
-		while (++y < HH)
-		{
-			ft_refresh_julia_values(w, x, y);
-			i = -1;
-			while (((w->zr * w->zr) + (w->zi * w->zi)) < 4 && ++i < w->iter)
-			{
-				tmp = w->zr;
-				w->zr = (w->zr * w->zr) - (w->zi * w->zi) + w->cr;
-				w->zi = (2 * w->zi * tmp) + w->ci;
-			}
-			if (y < HH && y >= 0 && x >= 0 && x < POST)
-			{
-				if (i == w->iter)
-					w->img[(int)((y * POST) + x)] = 0;
-				else
-					w->img[(int)((y * POST) + x)] = 0x0F100A * i;
-			}
-		}
-	}
-}
-*/
-/*void	ft_getcolor(t_win *w, int i)
-{
-	if (i == w->iter && ft_in_img(w) == 1)
-		w->img[(int)(((y + w->projy) * POST) + x + w->projx)] = 0;
-	else if (ft_in_img(w) == 1)
-		w->img[(int)(((y + w->projy) * POST) + x + w->projx)] = 0x0F100A * i;
-	y++;
-}*/

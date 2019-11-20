@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/08/20 06:13:03 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/19 06:07:58 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 10:02:06 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,18 +22,6 @@ void		ft_variant_julia(t_win *w)
 		w->variant = 1;
 	else
 		w->variant = 0;
-	ft_start_fract(w);
-}
-
-void		ft_swap_multi(t_win *w)
-{
-	int		res;
-
-	res = w->flat;
-	if (res == 0)
-		w->flat = 1;
-	else
-		w->flat = 0;
 	ft_start_fract(w);
 }
 

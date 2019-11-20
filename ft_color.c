@@ -6,7 +6,7 @@
 /*   By: aplat <aplat@student.le-101.fr>            +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/13 19:37:55 by aplat        #+#   ##    ##    #+#       */
-/*   Updated: 2019/11/17 16:30:12 by aplat       ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/11/20 10:58:08 by aplat       ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,5 +53,5 @@ void			ft_take_color(t_win *w, int *color)
 	i = 7;
 	w->fc = color[0];
 	while (--i >= 0)
-		w->inf->c[i] = color[i];
+		w->col[i] = color[i];
 }
